@@ -41,6 +41,7 @@ datapath   = xbmc.translatePath(ADDON.getAddonInfo('profile'))
 extras     = os.path.join(datapath, 'extras')
 logopath   = os.path.join(extras, 'logos')
 logos      = None
+UserName     = ADDON.getSetting('user')
 
 if SOURCE == 'DIGITELE':
     logos = os.path.join(logopath, DIGITELELOGOS)
@@ -995,7 +996,7 @@ class DIGITELESource(Source):
     def getCategories(self):
         cat  = dict()
         path = os.path.join(datapath, 'cats.xml')
-        url = 'http://digiteletv.premiumhostingweb.com/cats.xml'
+        url = 'http://digiteletv.premiumhostingweb.com/cats-%s.xml'%UserName
         f = urllib2.urlopen(url, timeout=30)
         xml = f.read()
         f.close()
